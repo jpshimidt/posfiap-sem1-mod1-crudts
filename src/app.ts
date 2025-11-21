@@ -1,12 +1,10 @@
 import express from "express";
-import userRoutes from "./routes/user.routes";
-
+import bookRoutes from "./modules/book/book.routes";
+import publisherRoutes from "./modules/publisher/publisher.routes";
 
 const app = express();
 app.use(express.json());
-
-
-app.use("/users", userRoutes);
-
+app.use("/books", bookRoutes);
+app.use("/publisher", publisherRoutes);
 
 export default app;

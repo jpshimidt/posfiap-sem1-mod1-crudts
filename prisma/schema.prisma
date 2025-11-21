@@ -7,9 +7,20 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
+model Publisher {
   id        Int      @id @default(autoincrement())
   name      String
-  email     String   @unique
+  books     Book[]   // Um publisher possui vários books
   createdAt DateTime @default(now())
+}
+
+model Book {
+  id                Int       @id @default(autoincrement())
+  title             String
+  author            String
+  isbn              String    @unique
+  publicationDate   DateTime
+  publisherId       Int
+  publisher         Publisher @relation(fields: [publisherId], references: [id])
+  createdAt         DateTime  @default(now())
 }
